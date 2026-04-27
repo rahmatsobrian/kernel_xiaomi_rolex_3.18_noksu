@@ -37,9 +37,10 @@ jobs:
         run: |
           git clone https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9.git linegcc49
 
-      # - name: Setup KernelSU (Legacy)
-        # run: |
+      - name: Setup KernelSU (Hookless)
+        run: |
          # curl -LSs "https://raw.githubusercontent.com/KernelSU-Next/KernelSU-Next/next/kernel/setup.sh" | bash -s legacy
+         curl -LSs "https://raw.githubusercontent.com/Mr-Morat/KernelSU-Next/stable/kernel/setup.sh" | bash -s syscall
          
 
       - name: Start Build
