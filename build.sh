@@ -15,7 +15,7 @@ KIMG_DTB="$OUTDIR/Image.gz-dtb"
 KIMG="$OUTDIR/Image.gz"
 
 # ================= INFO =================
-KERNEL_NAME="ReLIFE"
+KERNEL_NAME="Yoru"
 DEVICE="rolex"
 
 # =============== DATE (WIB) ===============
