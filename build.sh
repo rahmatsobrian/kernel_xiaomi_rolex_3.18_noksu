@@ -30,8 +30,8 @@ TC64="$ROOTDIR/linegcc49/bin/aarch64-linux-android-"
 TC32="$ROOTDIR/linegcc49/bin/arm-linux-androideabi-"
 
 # ================= TELEGRAM =================
-TG_BOT_TOKEN="7443002324:AAFpDcG3_9L0Jhy4v98RCBqu2pGfznBCiDM"
-TG_CHAT_ID="-1003520316735"
+TG_BOT_TOKEN="${TG_BOT_TOKEN}"
+TG_CHAT_ID="${TG_CHAT_ID}"
 
 # ================= GLOBAL =================
 BUILD_TIME="unknown"
@@ -81,6 +81,7 @@ send_telegram_error() {
         -d text="❌ *Kernel CI Build Test Failed*
 
 📄 *Log attached below* "
+send_telegram_log
 }
 
 send_telegram_start() {
@@ -127,7 +128,6 @@ ls -a
 echo -e "$yellow[+] Preparing kernel config...$white"
 make O=out ARCH=arm64 ${DEFCONFIG} || {
     send_telegram_error
-    send_telegram_log
     exit 1
 }
 
