@@ -42,8 +42,12 @@ jobs:
          # curl -LSs "https://raw.githubusercontent.com/KernelSU-Next/KernelSU-Next/next/kernel/setup.sh" | bash -s legacy
          curl -LSs "https://raw.githubusercontent.com/Mr-Morat/KernelSU-Next/stable/kernel/setup.sh" | bash -s syscall
          
-
       - name: Start Build (with log)
+        env:
+          KBUILD_BUILD_USER: "Hoshino"
+          KBUILD_BUILD_HOST: "Yoru"
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
         run: |
           mkdir -p logs
           bash build.sh 2>&1 | tee logs/build.txt
