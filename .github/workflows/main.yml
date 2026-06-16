@@ -42,10 +42,6 @@ jobs:
          # curl -LSs "https://raw.githubusercontent.com/KernelSU-Next/KernelSU-Next/next/kernel/setup.sh" | bash -s legacy
          curl -LSs "https://raw.githubusercontent.com/Mr-Morat/KernelSU-Next/stable/kernel/setup.sh" | bash -s syscall
 
-      - name: Patch KernelSU
-        run: |
-         cp patch/ksu.c KernelSU-Next/kernel/ksu.c
-        
       - name: Start Build (with log)
         env:
           KBUILD_BUILD_USER: "Hoshino"
