@@ -45,17 +45,6 @@ setup_env() {
     # Membuat folder log lokal
     mkdir -p logs
 
-    # Instalasi dependencies (Butuh akses sudo)
-    echo -e "${yellow}[+] Installing necessary packages...${white}"
-    sudo apt-get update -y
-    sudo apt-get install -y \
-        dialog bash sed wget git curl zip tar jq expect make cmake automake autoconf \
-        llvm lld lldb clang gcc binutils bison perl gperf gawk flex bc python3 zstd \
-        openssl unzip cpio build-essential ccache liblz4-tool libsdl1.2-dev libstdc++6 \
-        libxml2 libxml2-utils lzop pngcrush schedtool squashfs-tools xsltproc zlib1g-dev \
-        libncurses5-dev bzip2 gcc-aarch64-linux-gnu gcc-arm-linux-gnueabihf \
-        gcc-arm-linux-gnueabi dos2unix kmod
-
     # Setup Toolchain (GCC 4.9)
     if [ ! -d "$ROOTDIR/linegcc49" ]; then
         echo -e "${yellow}[+] Cloning GCC 4.9 Toolchain...${white}"
