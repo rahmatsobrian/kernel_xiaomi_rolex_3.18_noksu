@@ -13,8 +13,8 @@ if [ -z "$VARIANT" ]; then
 fi
 
 # ================= PATH =================
-DEFCONFIG="tissot_defconfig"
-TEMP_DEFCONFIG="tissot_temp_defconfig"
+DEFCONFIG="rolex_defconfig"
+TEMP_DEFCONFIG="rolex_temp_defconfig"
 ROOTDIR=$(pwd)
 OUTDIR="$ROOTDIR/out/arch/arm64/boot"
 ANYKERNEL_DIR="$ROOTDIR/AnyKernel"
@@ -22,11 +22,12 @@ KIMG_DTB="$OUTDIR/Image.gz-dtb"
 KIMG="$OUTDIR/Image.gz"
 
 # ========== TOOLCHAIN (CLANG) ===========
-export PATH="$ROOTDIR/clang-zyc/bin:$PATH"
+TC64="$ROOTDIR/linegcc49/bin/aarch64-linux-android-"
+TC32="$ROOTDIR/linegcc49/bin/arm-linux-androideabi-"
 
 # ================= INFO =================
-KERNEL_NAME="Yoru-NonTreble"
-DEVICE="tissot"
+KERNEL_NAME="Yoru"
+DEVICE="rolex"
 
 # =============== DATE (WIB) ===============
 DATE_TITLE=$(TZ=Asia/Jakarta date +"%d%m%Y")
@@ -120,12 +121,12 @@ build_kernel() {
     BUILD_START=$(TZ=Asia/Jakarta date +%s)
 
     echo -e "$yellow[+] Building Kernel [${VARIANT}]...$white"
-    make -j$(nproc --all) \
-        ARCH=arm64 \
-        O=out \
-        CC=clang \
-        CROSS_COMPILE=aarch64-linux-gnu- \
-        CROSS_COMPILE_ARM32=arm-linux-gnueabi- || {
+make -j$(nproc --all) \
+  ARCH=arm64 \
+  O=out \
+  CROSS_COMPILE=$TC64 \
+  CROSS_COMPILE_ARM32=$TC32 \
+  CROSS_COMPILE_COMPAT=$TC32 || {
             send_telegram_error
             exit 1
         }
